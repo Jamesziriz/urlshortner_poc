@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff"/>
+    <link rel="apple-touch-icon" href="logo-generic.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <title>URL-Shortner</title>
+
+</head>
+<body>
+    
+<div class="center">
+    <img src="logo-generic.png" alt="company logo" width="200" height="150">
+
+    <h1>URL Shortner Service</h1>
+
+    <div >
+    <form action="/" method="post">
+        <input type='url' name='url' placeholder='Enter url to be shortened' value = " <%= long_url %>  " class="textb" />
+        <input type="submit" value="Shorten" class="btn"/>
+    </form>
+    </div>
+    <br>
+    <div>
+        <% if (locals.short_url) { %>
+        <a href="<%= short_id %>" id = "shorturl" name="shorturl" class="textb"><%= short_url %> </a>
+        &nbsp;
+        <button type="button" onclick="copyText('shorturl')" class="btn" id="cpbtn">copy</button>
+        <button type="button" onclick="showQR()" class="btn">Get QR</button>
+        <% } %>
+    </div>
+    <div id="qrdiv">
+        <% if (locals.qr_src) { %>
+        <img id = "qrcode" src=<%= qr_src %> alt="QR" width="200" height="200"> 
+        <button type="button" onclick="copyImage()" class="btn">copy</button>
+        <% } %>
+
+    </div>
+
+    <div>
+        <% if (locals.short_url) { %>
+        <button type="button" onclick="window.location.href='/'" class="btn">Reset</button>
+        <% } %>
+    </div>
+
+    <script src = "homefun.js"></script>
+</div>
+</body>
+</html>
